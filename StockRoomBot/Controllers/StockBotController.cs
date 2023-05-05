@@ -20,7 +20,7 @@ namespace StockRoomBot.Controllers
         public async Task<IActionResult>  Get(string stockName)
         {
             var url = $"https://stooq.com/q/l/?s={stockName}&f=sd2t2ohlcv&h&e=csv";
-
+            
             var response = await _httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
@@ -47,7 +47,7 @@ namespace StockRoomBot.Controllers
                     result.Add(row);
                 }
 
-                return Ok(result);
+                return Ok($"Stockbot: {result[0]["Symbol"]} quote is ${result[0]["Close"]} per share");
             }
             else
             {

@@ -75,7 +75,7 @@ namespace StockRoomBlazor.Pages
 
             // Inform blazor the UI needs updating
             InvokeAsync(StateHasChanged);
-        }
+        }   
 
         private async Task DisconnectAsync()
         {

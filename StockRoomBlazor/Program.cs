@@ -41,7 +41,6 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<HttpContextAccessor>();
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<HttpClient>();
 builder.Services.AddSingleton<RabbitMQServiceProducer>();
 builder.Services.AddHostedService<RabbitMQConsumer>();
 //builder.Services.AddScoped<AuthenticationStateProvider, CookieAuthenticationStateProvider>();
