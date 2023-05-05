@@ -1,0 +1,39 @@
+﻿@page "/chatroom"
+@inject NavigationManager navigationManager
+@inject IHttpContextAccessor _httpContextAccessor
+
+@using Microsoft.AspNetCore.SignalR.Client;
+
+
+
+
+
+<h1>Stock Room</h1>
+<hr />
+
+@*banner to show current user*@
+<div class="alert alert-secondary mt-4" role="alert">
+    <span class="oi oi-person mr-2" aria-hidden="true"></span>
+    <span>You are connected as <b>@_username</b></span>
+    <button class="btn btn-sm btn-warning ml-md-auto" @onclick="@DisconnectAsync">Disconnect</button>
+</div>
+    @*display messages*@
+<div id="scrollbox">
+    @foreach (var item in _messages)
+    {
+        @if (item.IsNotice)
+        {
+            <div class="alert alert-info">@item.Body</div>
+        }
+        else
+        {
+            <div class="@item.CSS">
+                <div class="user">@item.Username</div>
+                <div class="msg">@item.Body</div>
+            </div>
+        }
+    }
+    <hr />
+    <textarea class="input-lg" placeholder="enter your comment" @bind="@_newMessage"></textarea>
+    <button class="btn btn-default" @onclick="@(() => SendAsync(_newMessage))">Send</button>
+</div>
