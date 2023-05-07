@@ -28,7 +28,16 @@
         else
         {
             <div class="@item.CSS">
-                <div class="user">@item.Username</div>
+                <div class="row">
+                    <div class="col-lg-2 px-1">
+                        <div class="user text-lg-start">@item.Username</div>
+
+                    </div>
+                    <div class="col-lg-6 px-1">
+                        <div class="user text-lg-start">@item.TimeStamp</div>
+                    </div>
+
+                </div>
                 <div class="msg">@item.Body</div>
             </div>
         }

@@ -46,7 +46,11 @@ namespace StockRoomBot.Controllers
                     }
                     result.Add(row);
                 }
+                if (result[0]["Close"] == "N/D")
+                {
+                    return BadRequest();
 
+                }
                 return Ok($"Stockbot: {result[0]["Symbol"]} quote is ${result[0]["Close"]} per share");
             }
             else

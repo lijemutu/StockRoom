@@ -57,7 +57,12 @@ namespace StockRoomBlazor
                     }
                     else
                     {
-                        throw new Exception($"Failed to get API content. Status code: {response.StatusCode}");
+                        // Publish a failed message
+                        message = "Stockbot: Sorry the service is unavailable or the stock code does not exist";
+                        body = Encoding.UTF8.GetBytes(message);
+                        _channel.BasicPublish(exchange: "", routingKey: "messages", mandatory: false, body: body);
+
+                        //throw new Exception($"Failed to get API content. Status code: {response.StatusCode}");
                     }
                 }
             };

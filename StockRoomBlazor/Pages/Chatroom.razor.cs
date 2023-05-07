@@ -71,6 +71,11 @@ namespace StockRoomBlazor.Pages
         {
             bool isMine = name.Equals(_username, StringComparison.OrdinalIgnoreCase);
 
+            if (_messages.Count > 50)
+            {
+                _messages.RemoveAt(0);
+            }
+
             _messages.Add(new Message(name, message, isMine));
 
             // Inform blazor the UI needs updating
@@ -113,6 +118,7 @@ namespace StockRoomBlazor.Pages
             public string Username { get; set; }
             public string Body { get; set; }
             public bool Mine { get; set; }
+            public DateTime TimeStamp { get; set; } = DateTime.Now;
 
             public bool IsNotice => Body.StartsWith("[Notice]");
 
